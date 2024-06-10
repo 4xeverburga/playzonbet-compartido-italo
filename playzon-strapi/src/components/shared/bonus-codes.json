@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_bonus_codes",
+  "info": {
+    "displayName": "BonusCodes",
+    "icon": "crown",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Include",
+        "Exclude"
+      ]
+    },
+    "code": {
+      "type": "customField",
+      "customField": "plugin::tagsinput.tags"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "collectionName": "components_shared_image_link_lists",
+  "info": {
+    "displayName": "Image Link list",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "iconLight": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "link": {
+      "type": "string"
+    },
+    "target": {
+      "type": "enumeration",
+      "enum": [
+        "_internal",
+        "_blank",
+        "_self",
+        "_parent",
+        "_top"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "iconDark": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "follow": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

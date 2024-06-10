@@ -1,0 +1,71 @@
+image: atlassian/default-image:2
+pipelines:
+  branches:
+    develop:
+      - step:
+          deployment: staging
+          name: Compress
+          image: atlassian/default-image:2
+          script:
+            - zip -r ./build-$BITBUCKET_BUILD_NUMBER.zip . -x "node_modules/*" ".git/*"
+          artifacts:
+            - build-*.zip
+      - step:
+          script:
+            - echo "Build Upload and Deploy to Staging"
+            - pipe: atlassian/aws-elasticbeanstalk-deploy:1.4.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $S3_BUCKET
+                APPLICATION_NAME: 'cms-strapi-eb'
+                COMMAND: 'all'
+                ZIP_FILE: 'build-$BITBUCKET_BUILD_NUMBER.zip'
+                VERSION_LABEL: 'deployment-stage-version-$BITBUCKET_BUILD_NUMBER'
+                ENVIRONMENT_NAME: 'cms-strapi-eb-stage-env'
+                WAIT: 'true'
+    main:
+      - step:
+          name: Compress
+          image: atlassian/default-image:2
+          script:
+            - git submodule update --recursive --init
+            - zip -r ./build-$BITBUCKET_BUILD_NUMBER.zip . -x "node_modules/*" ".git/*" ".next/*"
+          artifacts:
+            - build-*.zip
+      - step:
+          deployment: preproduction
+          name: Build Upload and Deploy to Preproduction
+          script:
+            - echo "Build Upload and Deploy to Staging"
+            - pipe: atlassian/aws-elasticbeanstalk-deploy:1.4.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $S3_BUCKET
+                APPLICATION_NAME: 'cms-strapi-eb'
+                COMMAND: 'all'
+                ZIP_FILE: 'build-$BITBUCKET_BUILD_NUMBER.zip'
+                VERSION_LABEL: 'deployment-preprod-version-$BITBUCKET_BUILD_NUMBER'
+                ENVIRONMENT_NAME: 'cms-strapi-eb-preprod-env'
+                WAIT: 'true'
+      - step:
+          deployment: production
+          name: Build Upload and Deploy to Production
+          trigger: manual
+          script:
+            - echo "Build Upload and Deploy to Staging"
+            - pipe: atlassian/aws-elasticbeanstalk-deploy:1.4.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $S3_BUCKET
+                APPLICATION_NAME: 'cms-strapi-eb'
+                COMMAND: 'all'
+                ZIP_FILE: 'build-$BITBUCKET_BUILD_NUMBER.zip'
+                VERSION_LABEL: 'deployment-pro-version-$BITBUCKET_BUILD_NUMBER'
+                ENVIRONMENT_NAME: 'cms-strapi-eb-prod-env'
+                WAIT: 'true'

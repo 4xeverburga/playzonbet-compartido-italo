@@ -1,0 +1,15 @@
+import { slugify } from 'transliteration';
+export default {
+  // ...
+  bootstrap({ strapi }) {
+    const navigationCommonService = strapi.plugin("navigation").service("common");
+    const originalGetSlug = navigationCommonService.getSlug;
+    const preprocess = (q) => {
+      return slugify(q);
+    };
+
+    navigationCommonService.getSlug = (query) => {
+      return originalGetSlug(preprocess(query));
+    };
+  },
+};

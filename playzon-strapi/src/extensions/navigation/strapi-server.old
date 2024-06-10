@@ -1,0 +1,13 @@
+module.exports = (plugin) => {
+  console.log("plugin", plugin);
+  const navigationCommonService = plugin.services.common;
+  const originalGetSlug = navigationCommonService.getSlug;
+  const preprocess = (q) => encodeURIComponent(q);
+
+  plugin.services.common.getSlug = (query) => {
+    console.log("query", query);
+    return originalGetSlug(preprocess(query));
+  };
+
+  return plugin;
+};

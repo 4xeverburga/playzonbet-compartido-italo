@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_lobby_sources",
+  "info": {
+    "displayName": "LobbySource",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sourceSlug": {
+      "type": "string"
+    },
+    "mobile": {
+      "type": "boolean"
+    },
+    "desktop": {
+      "type": "boolean"
+    },
+    "country": {
+      "type": "enumeration",
+      "enum": [
+        "Fallback",
+        "AUS"
+      ]
+    }
+  }
+}

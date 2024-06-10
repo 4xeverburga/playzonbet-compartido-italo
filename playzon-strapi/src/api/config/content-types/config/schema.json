@@ -1,0 +1,63 @@
+{
+  "kind": "singleType",
+  "collectionName": "configs",
+  "info": {
+    "singularName": "config",
+    "pluralName": "configs",
+    "displayName": "Configuration",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "casinoName": {
+      "type": "string",
+      "required": true
+    },
+    "casinoDomain": {
+      "type": "string"
+    },
+    "norwayApi": {
+      "type": "string"
+    },
+    "webapiUrl": {
+      "type": "string"
+    },
+    "casinoLogoLight": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "lobbySource": {
+      "displayName": "LobbySource",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.lobby-source"
+    },
+    "gmCore": {
+      "type": "enumeration",
+      "enum": [
+        "V1.0",
+        "V1.5"
+      ]
+    },
+    "casinoLogoDark": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

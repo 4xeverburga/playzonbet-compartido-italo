@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_user_roles",
+  "info": {
+    "displayName": "UserRoles",
+    "icon": "user",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Include",
+        "Exclude"
+      ]
+    },
+    "roleId": {
+      "type": "customField",
+      "customField": "plugin::tagsinput.tags"
+    }
+  }
+}

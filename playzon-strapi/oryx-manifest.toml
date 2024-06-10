@@ -1,0 +1,8 @@
+NodeVersion="18.19.1"
+nodeBuildCommandsFile="/home/site/repository/oryx-build-commands.txt"
+Frameworks="React"
+compressedNodeModulesFile="node_modules.tar.gz"
+OperationId="73f69a23e9abdef4"
+SourceDirectoryInBuildContainer="/tmp/8dc33ae19b9e4f1"
+PlatformName="nodejs"
+CompressDestinationDir="false"

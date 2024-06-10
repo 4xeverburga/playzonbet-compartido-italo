@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_publish_periods",
+  "info": {
+    "displayName": "Date Range Selector",
+    "icon": "repeat",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "dateFrom": {
+      "type": "datetime"
+    },
+    "dateTo": {
+      "type": "datetime"
+    }
+  }
+}

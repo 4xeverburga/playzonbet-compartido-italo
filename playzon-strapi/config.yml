@@ -1,0 +1,19 @@
+branch-defaults:
+  default:
+    environment: cms-strapi-eb-stage-env
+environment-defaults:
+  cms-strapi-eb-stage-env:
+    branch: null
+    repository: null
+global:
+  application_name: cms-strapi-eb
+  default_ec2_keyname: cms-eb-stage-env-kp
+  default_platform: Docker running on 64bit Amazon Linux 2023
+  default_region: us-east-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  sc: null
+  workspace_type: Application
